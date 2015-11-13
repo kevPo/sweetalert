@@ -24,7 +24,8 @@ import {
   hexToRgb,
   isIE8,
   logStr,
-  colorLuminance
+  colorLuminance,
+  inputTagNameSetting
 } from './modules/utils';
 
 /*
@@ -69,7 +70,6 @@ export default sweetAlert = swal = function() {
   var customizations = arguments[0];
 
   addClass(document.body, 'stop-scrolling');
-  resetInput();
 
   /*
    * Use argument if defined or default value from params object otherwise.
@@ -125,6 +125,9 @@ export default sweetAlert = swal = function() {
 
   }
 
+  inputTagNameSetting.setInputTagName(params);
+
+  resetInput();
   setParameters(params);
   fixVerticalPosition();
   openModal(arguments[1]);
@@ -166,7 +169,7 @@ export default sweetAlert = swal = function() {
       }
     }, 0);
   };
-  
+
   // Show alert with enabled buttons always
   swal.enableButtons();
 };
@@ -258,7 +261,7 @@ sweetAlert.showInputError = swal.showInputError = function(errorMessage) {
     sweetAlert.enableButtons();
   }, 1);
 
-  modal.querySelector('input').focus();
+  modal.querySelector(inputTagNameSetting.inputTagName()).focus();
 };
 
 

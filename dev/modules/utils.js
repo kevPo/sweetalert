@@ -36,7 +36,7 @@ var logStr = function(string) {
 };
 
 /*
- * Set hover, active and focus-states for buttons 
+ * Set hover, active and focus-states for buttons
  * (source: http://www.sitepoint.com/javascript-generate-lighter-darker-color)
  */
 var colorLuminance = function(hex, lum) {
@@ -62,10 +62,29 @@ var colorLuminance = function(hex, lum) {
 };
 
 
+var inputTagNameSetting = function () {
+  var tagName = '';
+  return {
+    setInputTagName: function (params) {
+      tagName = params.inputType === 'textarea' ? 'textarea' : 'input';
+    },
+    inputTagName: function () {
+      return tagName;
+    },
+    isInput: function () {
+      return tagName === 'input';
+    },
+    isTextarea: function () {
+      return tagName === 'textarea';
+    }
+  };
+}();
+
 export {
   extend,
   hexToRgb,
   isIE8,
   logStr,
-  colorLuminance
+  colorLuminance,
+  inputTagNameSetting
 };

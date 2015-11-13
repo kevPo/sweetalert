@@ -48,7 +48,7 @@ var handleKeyDown = function(event, params, modal) {
     }
   } else {
     if (keyCode === 13) {
-      if ($targetElement.tagName === 'INPUT') {
+      if ($targetElement.tagName === 'INPUT' || $targetElement.tagName === 'TEXTAREA') {
         $targetElement = $okButton;
         $okButton.focus();
       }

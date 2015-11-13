@@ -20,6 +20,7 @@ var defaultParams = {
   inputType: 'text',
   inputPlaceholder: '',
   inputValue: '',
+  textareaRows: '4',
   showLoaderOnConfirm: false
 };
 
