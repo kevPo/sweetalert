@@ -43,15 +43,19 @@ var setParameters = function(params) {
   /*
    * Custom class
    */
-  if (params.customClass) {
-    addClass(modal, params.customClass);
-    modal.setAttribute('data-custom-class', params.customClass);
-  } else {
-    // Find previously set classes and remove them
-    let customClass = modal.getAttribute('data-custom-class');
-    removeClass(modal, customClass);
-    modal.setAttribute('data-custom-class', '');
-  }
+   if (params.customClass) {
+     var currentClasses = modal.getAttribute('data-custom-class');
+     if (currentClasses !== "")
+       removeClass(modal, currentClasses);
+
+     addClass(modal, params.customClass);
+     modal.setAttribute('data-custom-class', params.customClass);
+   } else {
+     // Find previously set classes and remove them
+     let customClass = modal.getAttribute('data-custom-class');
+     removeClass(modal, customClass);
+     modal.setAttribute('data-custom-class', '');
+   }
 
   /*
    * Icon
