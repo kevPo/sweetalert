@@ -156,7 +156,7 @@ body.stop-scrolling {
     }
   }
 
-  input {
+  %inputCommon {
     width: 100%;
     box-sizing: border-box;
     border-radius: 3px;
@@ -197,7 +197,16 @@ body.stop-scrolling {
       color: lighten(#575757, 40);
     }
   }
-  &.show-input input {
+  input {
+    @extend %inputCommon;
+    height: 43px;
+  }
+  textarea {
+    @extend %inputCommon;
+    padding: 5px 12px;
+    resize: none;
+  }
+  &.show-input input, &.show-textarea textarea {
     display: block;
   }
 

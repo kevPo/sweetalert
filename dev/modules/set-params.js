@@ -1,7 +1,8 @@
 var alertTypes = ['error', 'warning', 'info', 'success', 'input', 'prompt'];
 
 import {
-  isIE8
+  isIE8,
+  inputTagNameSetting
 } from './utils';
 
 import {

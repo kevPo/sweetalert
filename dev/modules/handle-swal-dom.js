@@ -1,4 +1,4 @@
-import { hexToRgb } from './utils';
+import { hexToRgb, inputTagNameSetting } from './utils';
 import { removeClass, getTopMargin, fadeIn, show, addClass } from './handle-dom';
 import defaultParams from './default-params';
 
@@ -35,12 +35,12 @@ var getModal = function() {
 };
 
 /*
- * Get DOM element of input (in modal)
+ * Get DOM element of input or textarea (in modal)
  */
 var getInput = function() {
   var $modal = getModal();
   if ($modal) {
-    return $modal.querySelector('input');
+    return $modal.querySelector(inputTagNameSetting.inputTagName());
   }
 };
 
@@ -83,7 +83,7 @@ var openModal = function(callback) {
     var timerCallback = callback;
     $modal.timeout = setTimeout(function() {
       var doneFunctionExists = ((timerCallback || null) && $modal.getAttribute('data-has-done-function') === 'true');
-      if (doneFunctionExists) { 
+      if (doneFunctionExists) {
         timerCallback(null);
       }
       else {
@@ -101,9 +101,14 @@ var resetInput = function() {
   var $modal = getModal();
   var $input = getInput();
 
-  removeClass($modal, 'show-input');
+  removeClass($modal, 'show-input show-textarea');
+
+  if (inputTagNameSetting.isInput())
+    $input.setAttribute('type', defaultParams.inputType);
+  else if (inputTagNameSetting.isTextarea())
+    $input.setAttribute('rows', defaultParams.textareaRows);
+
   $input.value = defaultParams.inputValue;
-  $input.setAttribute('type', defaultParams.inputType);
   $input.setAttribute('placeholder', defaultParams.inputPlaceholder);
 
   resetInputError();
@@ -135,7 +140,7 @@ var fixVerticalPosition = function() {
 };
 
 
-export { 
+export {
   sweetAlertInitialize,
   getModal,
   getOverlay,
